@@ -32,3 +32,17 @@ p <- ggplot() +
   coord_equal()
 
 ggsave(p, file = "plot.png", height = 5, width = 7)
+
+
+
+# METHOD A (Random Endpoints) --------------------------------------------------
+
+
+
+
+# METHOD B (Random Radial Points) ----------------------------------------------
+
+
+
+
+# METHOD C (Random Midpoints) --------------------------------------------------
