@@ -33,7 +33,15 @@ p <- ggplot() +
 
 ggsave(p, file = "plot.png", height = 5, width = 7)
 
+# Plot a circle
+library("ggplot2")
+library("ggforce")
 
+data_circle <- data.frame(x0 = 0,
+                          y0 = 0,
+                          r = 1)
+
+ggplot() + geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
 
 # METHOD A (Random Endpoints) --------------------------------------------------
 
