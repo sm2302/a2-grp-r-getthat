@@ -45,8 +45,10 @@ ggplot() + geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
 
 # METHOD A (Random Endpoints) --------------------------------------------------
 
-
-
+theta = runif(100, 0,2*pi)
+x = cos(theta) 
+y = sin(theta) 
+plot(x,y, pch=20)
 
 # METHOD B (Random Radial Points) ----------------------------------------------
 
