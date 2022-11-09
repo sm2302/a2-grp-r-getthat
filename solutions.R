@@ -34,21 +34,41 @@ p <- ggplot() +
 ggsave(p, file = "plot.png", height = 5, width = 7)
 
 # Plot a circle
-library("ggplot2")
-library("ggforce")
+library(ggplot2)
+library(ggforce)
 
 data_circle <- data.frame(x0 = 0,
                           y0 = 0,
                           r = 1)
 
-ggplot() + geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
+ggplot(data = data_circle, aes(x = x0, y = y0)) + 
+  geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
 
 # METHOD A (Random Endpoints) --------------------------------------------------
+library(tidyverse)
+library(ggforce)
+library(ggplot2)
 
-theta = runif(100, 0,2*pi)
-x = cos(theta) 
-y = sin(theta) 
-plot(x,y, pch=20)
+x0 = cos(theta)
+y0 = sin(theta)
+plot(x0, y0, pch=20)
+
+theta <- runif(100, 0, 2*pi)
+circle <- tibble(
+  x0 = cos(theta),
+  y0 = sin(theta),
+  r = 1)
+
+eqtri_df <- tibble(
+  x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
+  y    = c(1, -0.5, -0.5),
+  xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
+  yend = c(-0.5, -0.5, 1)
+)
+
+ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
+  geom_point() + 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend, color = "red"))
 
 # METHOD B (Random Radial Points) ----------------------------------------------
 
