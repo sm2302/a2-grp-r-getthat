@@ -49,10 +49,6 @@ library(tidyverse)
 library(ggforce)
 library(ggplot2)
 
-x0 = cos(theta)
-y0 = sin(theta)
-plot(x0, y0, pch=20)
-
 theta <- runif(100, 0, 2*pi)
 circle <- tibble(
   x0 = cos(theta),
@@ -71,7 +67,6 @@ ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
   geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend, color = "red"))
 
 # METHOD B (Random Radial Points) ----------------------------------------------
-
 
 
 
