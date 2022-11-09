@@ -66,6 +66,21 @@ ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
   geom_point() + 
   geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend, color = "red"))
 
+# 1. Select the random endpoints directly from the dataframe
+circle[1:2,]
+
+# 2. Transform tibble to matrix
+make_matrix <- function(df,rownames = NULL){
+  my_matrix <-  as.matrix(df)
+  if(!is.null(rownames))
+    rownames(my_matrix) = rownames
+  my_matrix
+}
+
+make_matrix(circle, rownames = NULL)
+
+
+
 # METHOD B (Random Radial Points) ----------------------------------------------
 
 
