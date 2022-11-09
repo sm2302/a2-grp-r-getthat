@@ -50,7 +50,7 @@ library(ggforce)
 library(ggplot2)
 library(dplyr)
 
-n <- 1000 #number of chords - can change this
+n <- 150 #number of chords - can change this
 
 theta_1 <- runif(n, 0, 2*pi)
 endpoint_1 <- tibble(
@@ -70,9 +70,10 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
-  geom_point() + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), color = "red") 
+# Plot
+#ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
+ # geom_point() + 
+  #geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), color = "red") 
 
   #+ geom_segment(data = circle, aes(x0 = x0, y0 = y0, x1= x1, y1 = y1)) +
   #coord_equal()
@@ -81,7 +82,7 @@ circle_new <- mutate(.data = circle, l = sqrt((x1 - x0)^2 + (y1 - y0)^2)) # add 
 
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2)) # add new column s
 
-final_eqtri_df_new <- slice(.data = eqtri_df_new, 1)
+final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
 s <- last_col_eqtri_df_new <- final_eqtri_df_new$s
 
@@ -90,17 +91,19 @@ colnames(final_table)[6]  <- "s"
 
 compare <- select(.data = final_table, l, s)
 result <- filter(.data = compare, l > s)
+longer <- filter(.data = final_table, l > s)
+shorter <- filter(.data = final_table, l < s)
 print(result)
-print(nrow(result))
+chords_longer <- print(nrow(result))
 
-#ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
- # geom_point() + 
-#  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), color = "red") 
- #+ geom_segment(data = circle, aes(x0 = x0, y0 = y0, x1= x1, y1 = y1)) +
- #coord_equal()
+ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
+  geom_point() + 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red") +
+  geom_segment(data = longer , aes(x = x0, y = y0, xend = x1, yend = y1), col = "blue") + 
+  geom_segment(data = shorter , aes(x = x0, y = y0, xend = x1, yend = y1), col = "green") 
 
 # Using Principle of Indifference
-prob = nrow(result)/n
+prob = chords_longer/n
 print(prob)
 
 # 1. Select the random endpoints directly from the dataframe
