@@ -50,7 +50,7 @@ library(ggforce)
 library(ggplot2)
 library(dplyr)
 
-n <- 150 #number of chords - can change this
+n <- 200 # number of chords - can change this
 
 theta_1 <- runif(n, 0, 2*pi)
 theta_2 <- runif(n, 0, 2*pi)
@@ -66,31 +66,22 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-# Plot
-#ggplot(data = circle, mapping = aes(x = x0, y = y0)) +
- # geom_point() + 
-  #geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), color = "red") 
-
-  #+ geom_segment(data = circle, aes(x0 = x0, y0 = y0, x1= x1, y1 = y1)) +
-  #coord_equal()
-
 circle <- mutate(.data = endpoint, l = sqrt((x2 - x1)^2 + (y2 - y1)^2)) # add new column l
 
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2)) # add new column s
 
 final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
-s <- last_col_eqtri_df_new <- final_eqtri_df_new$s
+s <- final_eqtri_df_new$s
 
 final_table <- bind_cols(circle, s)
 colnames(final_table)[6]  <- "s"
 
 compare <- select(.data = final_table, l, s)
-result <- filter(.data = compare, l > s)
 longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
-print(result)
-chords_longer <- print(nrow(result))
+print(longer)
+chords_longer <- print(nrow(longer))
 
 ggplot(data = endpoint, aes(x = x1, y = y1)) +
   #ggplot(data = data_circle, aes(x = x0, y = y0)) +
