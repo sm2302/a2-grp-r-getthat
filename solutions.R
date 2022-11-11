@@ -157,6 +157,24 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
+end_point_new <- mutate(.data = end_point, l = sqrt((x2 - x1)^2 + (y2 - y1)^2))
+eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2))
+
+final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
+
+s <- final_eqtri_df_new$s
+
+final_table <- bind_cols(end_point_new, s)
+colnames(final_table)[6]  <- "s"
+
+compare <- select(.data = final_table, l, s)
+longer <- filter(.data = final_table, l > s)
+shorter <- filter(.data = final_table, l < s)
+print(longer)
+chords_longer <- print(nrow(longer))
+
+
+
 
 
 
