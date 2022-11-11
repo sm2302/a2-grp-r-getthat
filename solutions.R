@@ -7,7 +7,7 @@ library(ggplot2)
 library(dplyr)
 
 # METHOD A (Random Endpoints) --------------------------------------------------
-n <- 200 # number of chords - can be changed
+n <- 300 # number of chords - can be changed
 
 theta_A1 <- runif(n, 0, 2*pi)
 theta_A2 <- runif(n, 0, 2*pi)
@@ -41,18 +41,23 @@ print(longer)
 chords_longer <- print(nrow(longer))
 
 ggplot(data = endpoint, aes(x = x1, y = y1)) +
-  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2) +
   geom_point() + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "khaki3", lwd = 1.5) +
-  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
-  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
+  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
+  labs(title = "Bertrand's Paradox",
+       subtitle = "Random Endpoints Method") +
+  # move title and subtitle texts to the centre
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
 
-# Using Principle of Indifference
+# Use Principle of Indifference to calculate probability 
 prob = chords_longer/n
 print(prob)
 
 # METHOD B (Random Radial Points) ----------------------------------------------
-n <- 150 # number of chords - can be changed
+n <- 300 # number of chords - can be changed
 r <- 1
 
 theta_B <- runif(n, 0, 2*pi) # randomise angles
@@ -61,10 +66,10 @@ Q <- sqrt(r^2-P^2)
 
 # Coordinates of random endpoints
 endpoint <- tibble(
-  x1 = P*cos(theta_B)+ Q*sin(theta_B),
-  y1 = P*sin(theta_B)- Q*cos(theta_B),
-  x2 = P*cos(theta_B)- Q*sin(theta_B),
-  y2 = P*sin(theta_B)+ Q*cos(theta_B))
+  x1 = P*cos(theta_B) + Q*sin(theta_B),
+  y1 = P*sin(theta_B) - Q*cos(theta_B),
+  x2 = P*cos(theta_B) - Q*sin(theta_B),
+  y2 = P*sin(theta_B) + Q*cos(theta_B))
 
 # Coordinates of equilateral triangle
 eqtri_df <- tibble(
@@ -76,7 +81,6 @@ eqtri_df <- tibble(
 # new data for length l of chords and size s of triangle's lengths
 endpoint_new <- mutate(.data = endpoint, l = sqrt((x2-x1)^2+(y2-y1)^2))
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
-
 
 final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
@@ -94,13 +98,18 @@ chords_longer <- print(nrow(longer))
 
 # Plot triangle and chords
 ggplot() +
-  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2) +
   geom_segment(data = endpoint, aes(x = x1, y = y1,xend = x2, yend = y2)) + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "khaki3", lwd = 1.5) +
-  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
-  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
+  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
+  labs(title = "Bertrand's Paradox",
+       subtitle = "Random Radial Points Method") +
+  # move title and subtitle texts to the centre
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
 
-# Using Principle of Indifference to calculate probability
+# Use Principle of Indifference to calculate probability
 prob = chords_longer/n
 print(prob)
 
@@ -143,17 +152,17 @@ chords_longer <- print(nrow(longer))
 
 # Plot 
 ggplot() +
-  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2 ) +
   geom_segment(data = end_point, aes(x = x1, y = y1, xend = x2, yend = y2)) +
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "grey10", lwd = 1.5) +
-  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue3") + 
-  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "lightgoldenrod") 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
+  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
+  labs(title = "Bertrand's Paradox",
+       subtitle = "Random Midpoints Method") +
+  # move title and subtitle texts to the centre
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
 
-# Calculate probability 
+# Use Principal of Indifference to calculate probability 
 prob = chords_longer/n
 print(prob)
-
-
-
-
-
