@@ -186,6 +186,10 @@ ggplot() +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue3") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "lightgoldenrod") 
 
+# Calculate probability 
+prob = chords_longer/n
+print(prob)
+
 
 
 
