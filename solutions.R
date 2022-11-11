@@ -113,21 +113,21 @@ theta_3 <- runif(n, 0, 2*pi) #runif to randomise angles
 P <- runif(n,0,r) #runif to randomise radius
 Q <- sqrt(r^2-P^2) 
 
-# tibble of endpoints
+# coordinates of random radial points
 endpoint <- tibble(
   x1 = P*cos(theta_3)+ Q*sin(theta_3),
   y1 = P*sin(theta_3)- Q*cos(theta_3),
   x2 = P*cos(theta_3)- Q*sin(theta_3),
   y2 = P*sin(theta_3)+ Q*cos(theta_3))
 
-# tibble of equilateral triangle
+# coordinates of equilateral triangle
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
   y    = c(1, -0.5, -0.5),
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-# new data for endpoints and size of triangle's lengths
+# new data for any random chord l and size s of triangle's lengths
 endpoint_new <- mutate(.data = endpoint, l = sqrt((x2-x1)^2+(y2-y1)^2))
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
 
@@ -145,6 +145,14 @@ longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
 print(longer) #only printing chords longer than side s of equilateral triangle
 chords_longer <- print(nrow(longer))
+
+# Plot triangle and chords
+ggplot() +
+  geom_segment(data = endpoint, aes(x = x1, y = y1,xend = x2, yend = y2)) + 
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red", lwd = 1.5) +
+  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
+  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
+
 
 
 # METHOD C (Random Midpoints) --------------------------------------------------
