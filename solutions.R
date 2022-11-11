@@ -44,6 +44,7 @@ data_circle <- data.frame(x0 = 0,
 ggplot(data = data_circle, aes(x = x0, y = y0)) + 
   geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
 
+
 # METHOD A (Random Endpoints) --------------------------------------------------
 library(tidyverse)
 library(ggforce)
@@ -98,6 +99,7 @@ ggplot(data = endpoint, aes(x = x1, y = y1)) +
 prob = chords_longer/n
 print(prob)
 
+
 # METHOD B (Random Radial Points) ----------------------------------------------
 library(tidyverse)
 library(ggforce)
@@ -134,4 +136,13 @@ ggplot(data = endpoint, aes(x = x, y = y)) +
 
 radius <- mutate(.data = endpoint, r = sqrt((x- x0)^2 + (y - y0)^2))
 
+
 # METHOD C (Random Midpoints) --------------------------------------------------
+n <- 500
+
+theta_C <- runif(n, 0, 2*pi)
+V <- runif(n, 0, 1)
+V1 <- sqrt(V)
+W <- sqrt(r^2 - V1^2)
+
+
