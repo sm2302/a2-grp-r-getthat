@@ -1,6 +1,3 @@
-# Instruction to students: You may clear the code in this file and replace it
-# with your own.
-
 library(tidyverse)
 library(ggforce)
 library(ggplot2)
