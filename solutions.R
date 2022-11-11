@@ -59,7 +59,7 @@ theta_B <- runif(n, 0, 2*pi) # randomise angles
 P <- runif(n,0,r) # randomise radius
 Q <- sqrt(r^2-P^2) 
 
-# Coordinates of random radial points
+# Coordinates of random endpoints
 endpoint <- tibble(
   x1 = P*cos(theta_B)+ Q*sin(theta_B),
   y1 = P*sin(theta_B)- Q*cos(theta_B),
@@ -73,7 +73,7 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-# new data for any random chord l and size s of triangle's lengths
+# new data for length l of chords and size s of triangle's lengths
 endpoint_new <- mutate(.data = endpoint, l = sqrt((x2-x1)^2+(y2-y1)^2))
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
 
