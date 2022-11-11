@@ -109,28 +109,42 @@ library(dplyr)
 n <- 150 # number of chords - can change this
 r <- 1
 
-theta_3 <- runif(n, 0, 2*pi)
-P <- runif(n,0,r)
-Q <- sqrt(r^2-P^2)
+theta_3 <- runif(n, 0, 2*pi) #runif to randomise angles
+P <- runif(n,0,r) #runif to randomise radius
+Q <- sqrt(r^2-P^2) 
 
+# tibble of endpoints
 endpoint <- tibble(
   x1 = P*cos(theta_3)+ Q*sin(theta_3),
   y1 = P*sin(theta_3)- Q*cos(theta_3),
   x2 = P*cos(theta_3)- Q*sin(theta_3),
   y2 = P*sin(theta_3)+ Q*cos(theta_3))
 
+# tibble of equilateral triangle
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
   y    = c(1, -0.5, -0.5),
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
+# new data for endpoints and size of triangle's lengths
+endpoint_new <- mutate(.data = endpoint, l = sqrt((x2-x1)^2+(y2-y1)^2))
+eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
 
-ggplot(data = endpoint, aes(x = x, y = y)) +
-  # ggplot(data = data_circle, aes(x = x0, y = y0)) +
-  # geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r)) +
-  geom_point() + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red", lwd = 1.5) 
+
+final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
+
+s <- final_eqtri_df_new$s #rename as s
+
+final_table <- bind_cols(endpoint_new, s)
+colnames(final_table)[6]  <- "s"
+
+# Comparing lengths l and s
+compare <- select(.data = final_table, l, s)
+longer <- filter(.data = final_table, l > s)
+shorter <- filter(.data = final_table, l < s)
+print(longer) #only printing chords longer than side s of equilateral triangle
+chords_longer <- print(nrow(longer))
 
 
 # METHOD C (Random Midpoints) --------------------------------------------------
