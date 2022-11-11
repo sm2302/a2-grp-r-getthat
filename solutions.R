@@ -106,21 +106,18 @@ library(ggforce)
 library(ggplot2)
 library(dplyr)
 
-data_circle <- data.frame(x0 = 0,
-                          y0 = 0,
-                          r = 1)
+n <- 150 # number of chords - can change this
+r <- 1
 
-ggplot(data = data_circle, aes(x = x0, y = y0)) + 
-  geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
-
-# how to randomise radius
-n <- 200 # number of chords - can change this
 theta_3 <- runif(n, 0, 2*pi)
+P <- runif(n,0,r)
+Q <- sqrt(r^2-P^2)
+
 endpoint <- tibble(
-  x = cos(theta_3),
-  x0 = 0 ,
-  y = sin(theta_3),
-  y0 = 0 )
+  x1 = P*cos(theta_3)+ Q*sin(theta_3),
+  y1 = P*sin(theta_3)- Q*cos(theta_3),
+  x2 = P*cos(theta_3)- Q*sin(theta_3),
+  y2 = P*sin(theta_3)+ Q*cos(theta_3))
 
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
@@ -128,13 +125,12 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
+
 ggplot(data = endpoint, aes(x = x, y = y)) +
   # ggplot(data = data_circle, aes(x = x0, y = y0)) +
   # geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r)) +
   geom_point() + 
   geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red", lwd = 1.5) 
-
-radius <- mutate(.data = endpoint, r = sqrt((x- x0)^2 + (y - y0)^2))
 
 
 # METHOD C (Random Midpoints) --------------------------------------------------
