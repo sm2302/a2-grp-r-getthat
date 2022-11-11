@@ -3,6 +3,8 @@
 
 library(tidyverse)
 library(ggforce)
+library(ggplot2)
+library(dplyr)
 theme_set(theme_void())
 
 # Draw a random chord in a unit circle centred at origin -----------------------
@@ -46,20 +48,15 @@ ggplot(data = data_circle, aes(x = x0, y = y0)) +
 
 
 # METHOD A (Random Endpoints) --------------------------------------------------
-library(tidyverse)
-library(ggforce)
-library(ggplot2)
-library(dplyr)
+n <- 200 # number of chords - can be changed
 
-n <- 200 # number of chords - can change this
-
-theta_1 <- runif(n, 0, 2*pi)
-theta_2 <- runif(n, 0, 2*pi)
+theta_A1 <- runif(n, 0, 2*pi)
+theta_A2 <- runif(n, 0, 2*pi)
 endpoint <- tibble(
-  x1 = cos(theta_1),
-  y1 = sin(theta_1),
-  x2 = cos(theta_2),
-  y2 = sin(theta_2))
+  x1 = cos(theta_A1),
+  y1 = sin(theta_A1),
+  x2 = cos(theta_A2),
+  y2 = sin(theta_A2))
 
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
@@ -97,24 +94,19 @@ print(prob)
 
 
 # METHOD B (Random Radial Points) ----------------------------------------------
-library(tidyverse)
-library(ggforce)
-library(ggplot2)
-library(dplyr)
-
-n <- 150 # number of chords - can change this
+n <- 150 # number of chords - can be changed
 r <- 1
 
-theta_3 <- runif(n, 0, 2*pi) # runif to randomise angles
+theta_B <- runif(n, 0, 2*pi) # runif to randomise angles
 P <- runif(n,0,r) # runif to randomise radius
 Q <- sqrt(r^2-P^2) 
 
 # coordinates of random radial points
 endpoint <- tibble(
-  x1 = P*cos(theta_3)+ Q*sin(theta_3),
-  y1 = P*sin(theta_3)- Q*cos(theta_3),
-  x2 = P*cos(theta_3)- Q*sin(theta_3),
-  y2 = P*sin(theta_3)+ Q*cos(theta_3))
+  x1 = P*cos(theta_B)+ Q*sin(theta_B),
+  y1 = P*sin(theta_B)- Q*cos(theta_B),
+  x2 = P*cos(theta_B)- Q*sin(theta_B),
+  y2 = P*sin(theta_B)+ Q*cos(theta_B))
 
 # coordinates of equilateral triangle
 eqtri_df <- tibble(
@@ -155,16 +147,11 @@ prob = chords_longer/n
 print(prob)
 
 # METHOD C (Random Midpoints) --------------------------------------------------
-library(tidyverse)
-library(ggforce)
-library(ggplot2)
-library(dplyr)
-
-n <- 300
+n <- 300 # number of chords - can be changed
 r <- 1
 
-theta_C <- runif(n, 0, 2*pi)
-V <- runif(n, 0, 1)
+theta_C <- runif(n, 0, 2*pi) # randomise angles
+V <- runif(n, 0, 1) 
 V1 <- sqrt(V)
 U <- sqrt(r^2 - V1^2)
 
