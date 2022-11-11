@@ -50,22 +50,22 @@ In addition, you might find R's `runif()` function helpful for random number gen
 
 --------------------------------------------------------------------------------
 # GetThat° 
- We are going to briefly explain our approach for each methods.
+ We are going to briefly explain our approaches for each methods.
  
  > REMINDER! Before running the codes, do not forget to run all of the `library()` placed at the top of the script. 
  
 **Method A (random endpoints)** :
  
- - Firstly, we randomise angle theta in the circle. Then, we use *Cartesian coordinates* to determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. These coordinates of the endpoints are then tabulated. 
- - From the coordinates of the endpoints, we can actually calculate the length of the chords using the *Distance between 2 points* equation. 
+ - Firstly, we randomise angle theta in the circle. Then, we use **Cartesian coordinates** to determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. These coordinates of the endpoints are then tabulated. 
+ - From the coordinates of the endpoints, we can actually calculate the length of the chords using the **Distance between 2 points** equation. 
  - Then, with the lengths obtained we can easily compare them with the length of sides of the equilateral triangle from the table.
  - For this method, the probability of the length of the chords longer than the sides of the equilateral triangle will be around $1/3$ or $0.333$.
- - After running the codes, you will be able to see the Probabilty value on the Console which is printed as "$P(l > s) = ...$". $l$ is the *length of the chords* and $s$ is the *length of the equilateral triangle*.
+ - After running the codes, you will be able to see the Probabilty value on the Console which is printed as "P(l > s) = ...". $l$ is the *length of the chords* and $s$ is the *length of the equilateral triangle*.
  As for the plotting of the chords inside the circle, the **pink** coloured chords represent the chords that are **longer** than sides of the equilateral triangle and the **blue** coloured chords represent the chords that are **shorter** than the sides of the equilateral triangle.
  
- - **Method B (random radial points)**
+**Method B (random radial points)**
  
- - **Method C (random midpoints)**
+**Method C (random midpoints)**
 
 
 
