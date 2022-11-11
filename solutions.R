@@ -138,7 +138,13 @@ radius <- mutate(.data = endpoint, r = sqrt((x- x0)^2 + (y - y0)^2))
 
 
 # METHOD C (Random Midpoints) --------------------------------------------------
-n <- 500
+library(tidyverse)
+library(ggforce)
+library(ggplot2)
+library(dplyr)
+
+n <- 300
+r <- 1
 
 theta_C <- runif(n, 0, 2*pi)
 V <- runif(n, 0, 1)
@@ -173,6 +179,12 @@ shorter <- filter(.data = final_table, l < s)
 print(longer)
 chords_longer <- print(nrow(longer))
 
+# Plot 
+ggplot() +
+  geom_segment(data = end_point, aes(x = x1, y = y1, xend = x2, yend = y2)) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "grey10") +
+  geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue3") + 
+  geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "lightgoldenrod") 
 
 
 
