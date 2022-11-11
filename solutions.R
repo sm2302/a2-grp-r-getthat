@@ -143,6 +143,20 @@ n <- 500
 theta_C <- runif(n, 0, 2*pi)
 V <- runif(n, 0, 1)
 V1 <- sqrt(V)
-W <- sqrt(r^2 - V1^2)
+U <- sqrt(r^2 - V1^2)
+
+end_point <- tibble(
+  x1 = V1*cos(theta_C) + U*sin(theta_C),
+  y1 = V1*sin(theta_C) - U*cos(theta_C),
+  x2 = V1*cos(theta_C) - U*sin(theta_C),
+  y2 = V1*sin(theta_C) + U*cos(theta_C))
+
+eqtri_df <- tibble(
+  x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
+  y    = c(1, -0.5, -0.5),
+  xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
+  yend = c(-0.5, -0.5, 1))
+
+
 
 
