@@ -153,6 +153,9 @@ ggplot() +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
 
+# Using Principle of Indifference to calculate probability
+prob = chords_longer/n
+print(prob)
 
 
 # METHOD C (Random Midpoints) --------------------------------------------------
