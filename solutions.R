@@ -85,15 +85,11 @@ print(longer)
 chords_longer <- print(nrow(longer))
 
 ggplot(data = endpoint, aes(x = x1, y = y1)) +
-  #ggplot(data = data_circle, aes(x = x0, y = y0)) +
-  #geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r)) +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
   geom_point() + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red", lwd = 1.5) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "khaki3", lwd = 1.5) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
-#+
- #  + 
- # geom_circle(data = data_circle, aes(x0 = x0, y0 = y0, r=r))
 
 # Using Principle of Indifference
 prob = chords_longer/n
@@ -109,8 +105,8 @@ library(dplyr)
 n <- 150 # number of chords - can change this
 r <- 1
 
-theta_3 <- runif(n, 0, 2*pi) #runif to randomise angles
-P <- runif(n,0,r) #runif to randomise radius
+theta_3 <- runif(n, 0, 2*pi) # runif to randomise angles
+P <- runif(n,0,r) # runif to randomise radius
 Q <- sqrt(r^2-P^2) 
 
 # coordinates of random radial points
@@ -134,7 +130,7 @@ eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
 
 final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
-s <- final_eqtri_df_new$s #rename as s
+s <- final_eqtri_df_new$s # rename as s
 
 final_table <- bind_cols(endpoint_new, s)
 colnames(final_table)[6]  <- "s"
@@ -143,20 +139,20 @@ colnames(final_table)[6]  <- "s"
 compare <- select(.data = final_table, l, s)
 longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
-print(longer) #only printing chords longer than side s of equilateral triangle
+print(longer) # only printing chords longer than side s of equilateral triangle
 chords_longer <- print(nrow(longer))
 
 # Plot triangle and chords
 ggplot() +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
   geom_segment(data = endpoint, aes(x = x1, y = y1,xend = x2, yend = y2)) + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "red", lwd = 1.5) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "khaki3", lwd = 1.5) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkcyan") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "darkorange1") 
 
 # Using Principle of Indifference to calculate probability
 prob = chords_longer/n
 print(prob)
-
 
 # METHOD C (Random Midpoints) --------------------------------------------------
 library(tidyverse)
@@ -202,8 +198,9 @@ chords_longer <- print(nrow(longer))
 
 # Plot 
 ggplot() +
+  ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17") +
   geom_segment(data = end_point, aes(x = x1, y = y1, xend = x2, yend = y2)) +
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "grey10") +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "grey10", lwd = 1.5) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue3") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "lightgoldenrod") 
 
