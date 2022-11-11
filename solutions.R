@@ -9,23 +9,26 @@ library(dplyr)
 # METHOD A (Random Endpoints) --------------------------------------------------
 n <- 300 # number of chords - can be changed
 
-theta_A1 <- runif(n, 0, 2*pi)
-theta_A2 <- runif(n, 0, 2*pi)
+theta_A1 <- runif(n, 0, 2*pi) # randomise angles
+theta_A2 <- runif(n, 0, 2*pi) # randomise angles
+
+# Coordinates of random endpoints
 endpoint <- tibble(
   x1 = cos(theta_A1),
   y1 = sin(theta_A1),
   x2 = cos(theta_A2),
   y2 = sin(theta_A2))
 
+# Coordinates of equilateral triangle
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
   y    = c(1, -0.5, -0.5),
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-circle <- mutate(.data = endpoint, l = sqrt((x2 - x1)^2 + (y2 - y1)^2)) # add new column l
-
-eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2)) # add new column s
+# New data for length l of chords and length s of the equilateral triangle
+circle <- mutate(.data = endpoint, l = sqrt((x2 - x1)^2 + (y2 - y1)^2)) 
+eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2)) 
 
 final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
@@ -34,16 +37,18 @@ s <- final_eqtri_df_new$s
 final_table <- bind_cols(circle, s)
 colnames(final_table)[6]  <- "s"
 
+# Comparing lengths l and s
 compare <- select(.data = final_table, l, s)
 longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
 print(longer)
 chords_longer <- print(nrow(longer))
 
+# Plot
 ggplot(data = endpoint, aes(x = x1, y = y1)) +
   ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2) +
   geom_point() + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "indianred2", lwd = 1.2) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
@@ -78,13 +83,13 @@ eqtri_df <- tibble(
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
-# new data for length l of chords and size s of triangle's lengths
+# New data for length l of chords and length s of the equilateral triangle
 endpoint_new <- mutate(.data = endpoint, l = sqrt((x2-x1)^2+(y2-y1)^2))
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend-x)^2+(yend-y)^2))
 
 final_eqtri_df_new <- slice(.data = eqtri_df_new, 1) # only need 1 row as reference
 
-s <- final_eqtri_df_new$s # rename as s
+s <- final_eqtri_df_new$s 
 
 final_table <- bind_cols(endpoint_new, s)
 colnames(final_table)[6]  <- "s"
@@ -93,14 +98,14 @@ colnames(final_table)[6]  <- "s"
 compare <- select(.data = final_table, l, s)
 longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
-print(longer) # only printing chords longer than side s of equilateral triangle
+print(longer) 
 chords_longer <- print(nrow(longer))
 
-# Plot triangle and chords
+# Plot 
 ggplot() +
   ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2) +
   geom_segment(data = endpoint, aes(x = x1, y = y1,xend = x2, yend = y2)) + 
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "indianred2", lwd = 1.2) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
@@ -122,18 +127,21 @@ V <- runif(n, 0, 1)
 V1 <- sqrt(V)
 U <- sqrt(r^2 - V1^2)
 
+# Coordinates of random endpoints
 end_point <- tibble(
   x1 = V1*cos(theta_C) + U*sin(theta_C),
   y1 = V1*sin(theta_C) - U*cos(theta_C),
   x2 = V1*cos(theta_C) - U*sin(theta_C),
   y2 = V1*sin(theta_C) + U*cos(theta_C))
 
+# Coordinates of equilateral triangle
 eqtri_df <- tibble(
   x    = c(0, sqrt(3) / 2, -sqrt(3) / 2),
   y    = c(1, -0.5, -0.5),
   xend = c(sqrt(3) / 2, -sqrt(3) / 2, 0),
   yend = c(-0.5, -0.5, 1))
 
+# New data for length l of chords and length s of the equilateral triangle
 end_point_new <- mutate(.data = end_point, l = sqrt((x2 - x1)^2 + (y2 - y1)^2))
 eqtri_df_new <- mutate(.data = eqtri_df, s = sqrt((xend - x)^2 + (yend - y)^2))
 
@@ -144,6 +152,7 @@ s <- final_eqtri_df_new$s
 final_table <- bind_cols(end_point_new, s)
 colnames(final_table)[6]  <- "s"
 
+# Comparing lengths l and s
 compare <- select(.data = final_table, l, s)
 longer <- filter(.data = final_table, l > s)
 shorter <- filter(.data = final_table, l < s)
@@ -154,7 +163,7 @@ chords_longer <- print(nrow(longer))
 ggplot() +
   ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray17", lwd = 1.2 ) +
   geom_segment(data = end_point, aes(x = x1, y = y1, xend = x2, yend = y2)) +
-  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "snow4", lwd = 1.2) +
+  geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend), col = "indianred2", lwd = 1.2) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
