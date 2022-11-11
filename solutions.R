@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggforce)
 library(ggplot2)
 library(dplyr)
-
+ 
 # METHOD A (Random Endpoints) --------------------------------------------------
 n <- 300 # number of chords - can be changed
 
@@ -49,14 +49,18 @@ ggplot(data = endpoint, aes(x = x1, y = y1)) +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
-       subtitle = "Random Endpoints Method") +
+       subtitle = "Random Endpoints Method",
+       x = "x", y = "y") +
   # move title and subtitle texts to the centre
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
 
-# Use Principle of Indifference to calculate probability 
+# Use Principal of Indifference to calculate probability, P of chord length, l
+# being longer than a side of triangle, s
 prob = chords_longer/n
-print(prob)
+# Print the probability as the output  
+sprintf("P(l > s) = %f", prob)
+
 
 # METHOD B (Random Radial Points) ----------------------------------------------
 n <- 300 # number of chords - can be changed
@@ -106,14 +110,18 @@ ggplot() +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
-       subtitle = "Random Radial Points Method") +
+       subtitle = "Random Radial Points Method",
+       x = "x", y = "y") +
   # move title and subtitle texts to the centre
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
 
-# Use Principle of Indifference to calculate probability
+# Use Principal of Indifference to calculate probability, P of chord length, l
+# being longer than a side of triangle, s
 prob = chords_longer/n
-print(prob)
+# Print the probability as the output  
+sprintf("P(l > s) = %f", prob)
+
 
 # METHOD C (Random Midpoints) --------------------------------------------------
 n <- 300 # number of chords - can be changed
@@ -164,11 +172,14 @@ ggplot() +
   geom_segment(data = longer , aes(x = x1, y = y1, xend = x2, yend = y2), col = "maroon2") + 
   geom_segment(data = shorter , aes(x = x1, y = y1, xend = x2, yend = y2), col = "steelblue4") +
   labs(title = "Bertrand's Paradox",
-       subtitle = "Random Midpoints Method") +
+       subtitle = "Random Midpoints Method",
+       x = "x", y = "y") +
   # move title and subtitle texts to the centre
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
 
-# Use Principal of Indifference to calculate probability 
+# Use Principal of Indifference to calculate probability, P of chord length, l
+# being longer than a side of triangle, s
 prob = chords_longer/n
-print(prob)
+# Print the probability as the output  
+sprintf("P(l > s) = %f", prob)
