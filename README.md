@@ -52,7 +52,7 @@ In addition, you might find R's `runif()` function helpful for random number gen
 # GetThat° 
  We are going to briefly explain our approach for each methods.
  
- - **Method A (random endpoints)** 
+ - **Method A (random endpoints)** :
  Firstly, we randomise angle theta in the circle. Then, we use **Cartesian coordinates** to determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. These coordinates of the endpoints are then tabulated. 
  From the coordinates of the endpoints, we can actually calculate the length of the chords using the **Distance between 2 points** equation. 
  Then, with the lengths obtained we can easily compare them with the length of the equilateral triangle from the table.
