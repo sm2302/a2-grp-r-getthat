@@ -55,6 +55,15 @@ Below is a brief explanation of our approaches for each of the methods.
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
  - For this method, the probability of the length of the chords longer than the side of the equilateral triangle will be around $1/4$ or $0.25$. 
  
+
+### Result
+ 
+| Methods     | P(l >s)     |
+| ----------- | ----------- |
+| A           | frac{1}{3}  |
+| B           | frac{1}{2}  |
+| C           | frac{1}{4}  |
+
 --------------------------------------------------------------------------------
 - After running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
 - For each of the three methods above, we printed `P(l > s)`, the value of the probability, as the output. These values are calculated using the **Principle of indifference**: $$\Pr(A) = \frac{n(A)}{n(S)}.$$
