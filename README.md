@@ -58,11 +58,11 @@ Below is a brief explanation of our approaches for each of the methods.
 
 ### Result
  
-| Methods     | P(l >s)      |
-| :---------: | :---------:  |
-| A           | $frac{1}{3}$ |
-| B           | $frac{1}{2}$ |
-| C           | $frac{1}{4}$ |
+| Methods     | 'P(l >s)'     |
+| :---------: | :---------:   |
+| A           | $\frac{1}{3}$ |
+| B           | $\frac{1}{2}$ |
+| C           | $\frac{1}{4}$ |
 
 --------------------------------------------------------------------------------
 - After running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
