@@ -1,14 +1,14 @@
 # Bertrand's Paradox
 
-Problem
+## Problem
 
 > Consider an equilateral triangle inscribed in a circle.
 > If a chord in the circle is chosen at random,
-> what is the probability,$P$, that the chord, $l$, is longer than a side of the triangle, $s$?
+> what is the probability, $P$, that the chord, $l$, is longer than a side of the triangle, $s$?
 
 ![](plot.png)
 
-Solution
+## Solution
 
 There are three possible solutions, which depend on the three different ways of randomly generating a chord. 
 
@@ -39,7 +39,7 @@ Below is a brief explanation of our approaches for each of the methods.
 - First, randomise the angle, $\theta$, and radius, *P* of the circle using `runif()` function.
  *Q* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
- This [link](https://www.stewartcalculus.com/data/CALCULUS%20Early%20Transcendentals/upfiles/RotationofAxes.pdf) will help in understanding how the x and y values are obtained. 
+ This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the x and y values are obtained. 
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
@@ -49,7 +49,7 @@ Below is a brief explanation of our approaches for each of the methods.
 
 - Firstly, we randomise the angle, $\theta$, and radius *V* of the circle using `runif()` function. *V1* and *U* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
- This [link](https://www.stewartcalculus.com/data/CALCULUS%20Early%20Transcendentals/upfiles/RotationofAxes.pdf) will help in understanding how the x and y values are obtained. 
+ This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the x and y values are obtained. 
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
