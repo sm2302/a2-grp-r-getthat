@@ -56,19 +56,19 @@ In addition, you might find R's `runif()` function helpful for random number gen
  
 **Method A (random endpoints)** :
  
- - Firstly, we randomise angle theta in the circle. Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. These coordinates are then tabulated using tibbles. 
+ - Firstly, we randomise angle $\theta$ in the circle. Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of side of the equilateral triangle from the table.
  - For this method, the probability of the length of the chords longer than the sides of the equilateral triangle will be around $1/3$ or $0.3$.
 
 **Method B (random radial points)**
-- Firstly, we randomise angle $\theta$ and radius P of the circle using `runif()` function.
- Q is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
+- Firstly, we randomise angle $\theta$ and radius *P* of the circle using `runif()` function.
+ *Q* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
  This [link](https://www.stewartcalculus.com/data/CALCULUS%20Early%20Transcendentals/upfiles/RotationofAxes.pdf) will help in understanding how the x and y values are obtained. 
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
- - The lengths obtained are then compared with the length of a side of the equilateral triangle from the table.
+ - The lengths obtained are then compared with the length of side of the equilateral triangle from the table.
  - For this method, the probability of the length of the chords longer than the sides of the equilateral triangle will be around $1/2$ or $0.5$.
  
 **Method C (random midpoints)**
