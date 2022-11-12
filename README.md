@@ -4,7 +4,7 @@
 
 > Consider an equilateral triangle inscribed in a circle.
 > If a chord in the circle is chosen at random,
-> what is the probability, $P$, that the chord, $l$, is longer than a side of the triangle, $s$?
+> what is the probability, $P(l > s)$, that the chord, $l$, is longer than a side of the triangle, $s$?
 
 ![](plot.png)
 
@@ -37,7 +37,7 @@ Below is a brief explanation of our approaches for each of the methods.
 **Method B (random radial points)** :
 
 - First, randomise the angle, $\theta$, and radius *P* of the circle using `runif()` function.
- *Q* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
+ $Q$ is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
  This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the x and y values are obtained. 
  - These coordinates are then tabulated using tibbles. 
@@ -47,9 +47,9 @@ Below is a brief explanation of our approaches for each of the methods.
 
 **Method C (random midpoints)** :
 
-- Firstly, we randomise the angle, $\theta$, and radius *V* of the circle using `runif()` function. *V1* and *U* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
+- Firstly, we randomise the angle, $\theta$, and radius $V$ of the circle using `runif()` function. $U$ is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
- This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the x and y values are obtained. 
+ This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the $V1$, $x$ and $y$ values are obtained. 
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
@@ -59,7 +59,7 @@ Below is a brief explanation of our approaches for each of the methods.
 
 Below is the probability of the length of the chords, $l$ being longer than the side of the equilateral triangle, $s$.
 
-| Methods     | `P(l >s)`     |
+| Methods     |    P(l >s)    |
 | :---------: | :---------:   |
 | A           | $\frac{1}{3}$ |
 | B           | $\frac{1}{2}$ |
@@ -67,7 +67,7 @@ Below is the probability of the length of the chords, $l$ being longer than the 
 
 --------------------------------------------------------------------------------
 - After running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
-- For each of the three methods above, we printed `P(l > s)`, the value of the probability, as the output. These values are calculated using the **Principle of indifference**: $$\Pr(A) = \frac{n(A)}{n(S)}.$$
+- For each of the three methods above, we printed $P(l > s)$, the value of the probability, as the output. These values are calculated using the **Principle of indifference**: $$\Pr(A) = \frac{n(A)}{n(S)}.$$
 - The chords plotted in the circle are grouped into two; the **pink** chords represent chords that are **longer** than the side of the equilateral triangle, whereas the **blue** chords represent those that are **shorter**.
 
 ### Source
