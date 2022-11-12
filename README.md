@@ -57,10 +57,12 @@ Below is a brief explanation of our approaches for each of the methods.
  
 
 --------------------------------------------------------------------------------
+- By running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
 - For each of the three methods above, we printed `P(l > s)`, the value of the probability, as the output. These values are calculated using the **Principle of indifference**: $$\Pr(A) = \frac{n(A)}{n(S)}.$$
-- It can be observed that all three methods have different probabilities, depending on how the chord is defined. The chords plotted in the circle are grouped into two; the **pink** chords represent chords that are **longer** than the side of the equilateral triangle, whereas the **blue** chords represent those that are **shorter**.
+- The chords plotted in the circle are grouped into two; the **pink** chords represent chords that are **longer** than the side of the equilateral triangle, whereas the **blue** chords represent those that are **shorter**.
 
 ### Reference
+- Keeler, P. (2019, June 30). The Bertrand paradox – H. Paul Keeler. Retrieved from H. Paul Keeler website: https://hpaulkeeler.com/the-bertrand-paradox/
 - 
 
 
