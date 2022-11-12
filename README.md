@@ -32,7 +32,7 @@ Below is a brief explanation of our approaches for each of the methods.
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
- - For this method, the probability of the length of the chords being longer than the side of the equilateral triangle will be around $1/3$ or $0.3$.
+
 
 **Method B (random radial points)** :
 
@@ -43,8 +43,8 @@ Below is a brief explanation of our approaches for each of the methods.
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
- - For this method, the probability of the length of the chords being longer than the side of the equilateral triangle will be around $1/2$ or $0.5$. 
- 
+
+
 **Method C (random midpoints)** :
 
 - Firstly, we randomise the angle, $\theta$, and radius *V* of the circle using `runif()` function. *V1* and *U* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
@@ -53,12 +53,13 @@ Below is a brief explanation of our approaches for each of the methods.
  - These coordinates are then tabulated using tibbles. 
  - Using the coordinates, the length of the chords is calculated by the **Distance between 2 points** equation. 
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
- - For this method, the probability of the length of the chords longer than the side of the equilateral triangle will be around $1/4$ or $0.25$. 
- 
+
 
 ### Result
- 
-| Methods     | 'P(l >s)'     |
+
+Below is the probability of the length of the chords, $l$ being longer than the side of the equilateral triangle, $s$.
+
+| Methods     | `P(l >s)`     |
 | :---------: | :---------:   |
 | A           | $\frac{1}{3}$ |
 | B           | $\frac{1}{2}$ |
