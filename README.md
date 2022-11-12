@@ -36,7 +36,7 @@ Below is a brief explanation of our approaches for each of the methods.
 
 **Method B (random radial points)** :
 
-- First, randomise the angle, $\theta$, and radius, *P* of the circle using `runif()` function.
+- First, randomise the angle, $\theta$, and radius *P* of the circle using `runif()` function.
  *Q* is found using **Pythagoras Theorem** $a^2 + b^2 = c^2$.
  - Then, determine both endpoints $(x1, y1)$ & $(x2, y2)$ of the random chords. 
  This [link](https://hpaulkeeler.com/the-bertrand-paradox/) might help in understanding how the x and y values are obtained. 
@@ -55,15 +55,14 @@ Below is a brief explanation of our approaches for each of the methods.
  - The lengths obtained are then compared with the length of the side of the equilateral triangle from the table.
  - For this method, the probability of the length of the chords longer than the side of the equilateral triangle will be around $1/4$ or $0.25$. 
  
-
 --------------------------------------------------------------------------------
-- By running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
+- After running the codes, it can be observed that all three methods have different probabilities, depending on how the chord is defined.
 - For each of the three methods above, we printed `P(l > s)`, the value of the probability, as the output. These values are calculated using the **Principle of indifference**: $$\Pr(A) = \frac{n(A)}{n(S)}.$$
 - The chords plotted in the circle are grouped into two; the **pink** chords represent chords that are **longer** than the side of the equilateral triangle, whereas the **blue** chords represent those that are **shorter**.
 
-### Reference
-- Keeler, P. (2019, June 30). The Bertrand paradox – H. Paul Keeler. Retrieved from H. Paul Keeler website: https://hpaulkeeler.com/the-bertrand-paradox/
-- 
+### Source
+- https://hpaulkeeler.com/the-bertrand-paradox/
+- https://www.stewartcalculus.com/data/CALCULUS%20Early%20Transcendentals/upfiles/RotationofAxes.pdf
 
 
 
