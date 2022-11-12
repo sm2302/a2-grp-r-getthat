@@ -59,7 +59,7 @@ Below is a brief explanation of our approaches for each of the methods.
 
 Below is the probability of the length of the chords, $l$ being longer than the side of the equilateral triangle, $s$.
 
-| Methods     |    P(l >s)    |
+| Methods     |    P(l > s)   |
 | :---------: | :---------:   |
 | A           | $\frac{1}{3}$ |
 | B           | $\frac{1}{2}$ |
