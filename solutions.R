@@ -1,3 +1,6 @@
+# R Group Assignment: Bertrand's Paradox 
+# GetThat° Group
+
 library(tidyverse)
 library(ggforce)
 library(ggplot2)
